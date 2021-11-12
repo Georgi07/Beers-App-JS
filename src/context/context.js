@@ -13,19 +13,23 @@ export const ContextProvider = ({ children }) => {
   }, []);
 
   const getStoredFavBeers = () => {
-    let storedBeers = localStorage.getItem("storedFavoriteBeers").split(",");
-    console.log("storedBeers", storedBeers);
-    if (storedBeers) {
-      storedBeers.split(",").map((favBeer) => {
-        setFavoriteBeers([...favoriteBeers, +favBeer]);
-      });
-    }
+    let storedBeers = localStorage.getItem("storedFavoriteBeers");
+    // console.log("storedBeers", storedBeers);
+    // if (storedBeers) {
+    //   storedBeers.split(",").map((favBeer) => {
+    //     setFavoriteBeers([...favoriteBeers, +favBeer]);
+    //   });
+    // }
   };
 
   const addFavoriteBeer = (beerId) => {
     if (!favoriteBeers.includes(beerId)) {
       setFavoriteBeers([...favoriteBeers, beerId]);
-      localStorage.setItem("storedFavoriteBeers", [...favoriteBeers, beerId]);
+
+      localStorage.setItem("storedFavoriteBeers", [
+        localStorage.getItem("storedFavoriteBeers"),
+        beerId,
+      ]);
     }
   };
 
