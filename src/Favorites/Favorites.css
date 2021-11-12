@@ -1,0 +1,8 @@
+* {
+    text-align: center;
+}
+section {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}

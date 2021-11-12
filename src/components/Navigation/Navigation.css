@@ -1,0 +1,22 @@
+nav {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    background-color: lightblue;
+  }
+  nav h2 {
+    padding-left: 20px;
+    color: #fff;
+    width: 20%;
+  }
+  nav .NavLinks {
+    width: 80%;
+    text-align: right;
+  }
+  nav .NavLinks a {
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 35px;
+    font-size: 22px;
+    color: #fff;
+  }

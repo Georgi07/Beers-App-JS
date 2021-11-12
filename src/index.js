@@ -3,18 +3,12 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import Home from "./Home/Home.js";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ContextProvider } from "./context/context";
 
 ReactDOM.render(
   <React.StrictMode>
     <ContextProvider>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-        </Routes>
-      </Router>
+      <App />
     </ContextProvider>
   </React.StrictMode>,
   document.getElementById("root")
