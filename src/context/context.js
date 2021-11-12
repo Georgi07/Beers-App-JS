@@ -15,11 +15,11 @@ export const ContextProvider = ({ children }) => {
   const getStoredFavBeers = () => {
     let storedBeers = localStorage.getItem("storedFavoriteBeers").split(",");
     console.log("storedBeers", storedBeers);
-    // if (storedBeers) {
-    //   storedBeers.split(",").map((favBeer) => {
-    //     setFavoriteBeers([...favoriteBeers, +favBeer]);
-    //   });
-    // }
+    if (storedBeers) {
+      storedBeers.split(",").map((favBeer) => {
+        setFavoriteBeers([...favoriteBeers, +favBeer]);
+      });
+    }
   };
 
   const addFavoriteBeer = (beerId) => {
