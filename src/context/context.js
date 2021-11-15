@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {ethers} from 'ethers';
 import axios from "axios";
 
 export const beersContext = React.createContext();
@@ -7,6 +8,13 @@ export const ContextProvider = ({ children }) => {
   const [beersList, setBeersList] = useState([]);
   const [randomBeer, setRandomBeer] = useState();
   const [favoriteBeers, setFavoriteBeers] = useState([]);
+
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  // const ensAddress = provider._network;
+  // const signer = provider.getSigner();
+  // const balance =  provider.getBalance("ethers.eth")
+  // const myBalance = ethers.utils.formatEther(balance);
+
 
   useEffect(() => {
     getStoredFavBeers();
@@ -69,6 +77,7 @@ export const ContextProvider = ({ children }) => {
         addFavoriteBeer,
         favoriteBeers,
         removeFavoriteBeer,
+        provider
       }}
     >
       {children}

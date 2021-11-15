@@ -1,0 +1,16 @@
+.Form {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin: 0 auto;
+}
+.Form input {
+  margin-bottom: 10px;
+}
+.Wallet button{
+    background-color: lightblue;
+    color: black;
+    font-size: 22px;
+    font-weight: bold;
+   
+}
