@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {ethers} from 'ethers';
+import { ethers } from "ethers";
 import axios from "axios";
 
 export const beersContext = React.createContext();
@@ -10,11 +10,7 @@ export const ContextProvider = ({ children }) => {
   const [favoriteBeers, setFavoriteBeers] = useState([]);
 
   const provider = new ethers.providers.Web3Provider(window.ethereum);
-  // const ensAddress = provider._network;
-  // const signer = provider.getSigner();
-  // const balance =  provider.getBalance("ethers.eth")
-  // const myBalance = ethers.utils.formatEther(balance);
-
+  const signer = provider.getSigner();
 
   useEffect(() => {
     getStoredFavBeers();
@@ -22,12 +18,12 @@ export const ContextProvider = ({ children }) => {
 
   const getStoredFavBeers = () => {
     let storedBeers = localStorage.getItem("storedFavoriteBeers");
-    // console.log("storedBeers", storedBeers);
-    // if (storedBeers) {
-    //   storedBeers.split(",").map((favBeer) => {
-    //     setFavoriteBeers([...favoriteBeers, +favBeer]);
-    //   });
-    // }
+    let parsedData = [];
+
+    storedBeers.split(",").map((favBeer) => {
+      parsedData.push(+favBeer);
+    });
+    setFavoriteBeers(...favoriteBeers, parsedData);
   };
 
   const addFavoriteBeer = (beerId) => {
@@ -42,7 +38,9 @@ export const ContextProvider = ({ children }) => {
   };
 
   const removeFavoriteBeer = (beerId) => {
-    const filteredFavorites = favoriteBeers.filter((favId) => favId !== beerId);
+    const filteredFavorites = favoriteBeers.filter(
+      (favId) => +favId !== beerId
+    );
     setFavoriteBeers(filteredFavorites);
     localStorage.setItem("storedFavoriteBeers", filteredFavorites);
   };
@@ -77,7 +75,8 @@ export const ContextProvider = ({ children }) => {
         addFavoriteBeer,
         favoriteBeers,
         removeFavoriteBeer,
-        provider
+        provider,
+        signer,
       }}
     >
       {children}
