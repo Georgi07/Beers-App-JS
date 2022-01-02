@@ -1,10 +1,10 @@
-import { ethers } from "ethers";
 import React, { useContext, useState } from "react";
 import { beersContext } from "../context/context";
+import { ethers } from "ethers";
 import "./Wallet.css";
 
 const Wallet = () => {
-  const { provider, signer } = useContext(beersContext);
+  const { signer } = useContext(beersContext);
   const [account, setAccount] = useState();
   const [ethValue, setEthValue] = useState();
 
@@ -19,7 +19,6 @@ const Wallet = () => {
 
   return (
     <div className="Wallet">
-      {console.log("provider", provider)}
       <h1>Send ETH Payment</h1>
       <div className="Form">
         <input
@@ -35,7 +34,7 @@ const Wallet = () => {
           placeholder="0.00"
         />
       </div>
-      <button onClick={() => sendEthToAccount()}>Send ETH</button>
+      <button onClick={sendEthToAccount}>Send ETH</button>
     </div>
   );
 };

@@ -1,14 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { beersContext } from "./../context/context";
 import Beer from "./../components/BeersLIst/Beer/Beer";
-
 import "./Favorites.css";
 
 const Favorites = () => {
-  const { favoriteBeers, beersList } = useContext(beersContext);
+  const { favoriteBeersList, beersList, getBeersData } = useContext(beersContext);
+
+  useEffect(() => {
+    getBeersData();
+  }, []);
 
   const favoriteList = beersList.map((beer) => {
-    if (favoriteBeers.includes(beer.id)) {
+    if (favoriteBeersList.includes(beer.id)) {
       return (
         <Beer
           key={beer.id}
@@ -22,10 +25,10 @@ const Favorites = () => {
   });
 
   return (
-    <>
+    <div>
       <h1>Favorites</h1>
       <section>{favoriteList}</section>
-    </>
+    </div>
   );
 };
 

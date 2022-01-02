@@ -8,18 +8,18 @@ const Beer = ({ id, image_url, name, description }) => {
   const {
     playBeerOpeningSound,
     addFavoriteBeer,
-    favoriteBeers,
+    favoriteBeersList,
     removeFavoriteBeer,
   } = useContext(beersContext);
 
   useEffect(() => {
-    if (favoriteBeers.includes(id)) {
+    if (favoriteBeersList.includes(id)) {
       setFavorite(true);
     }
-  }, [favoriteBeers]);
+  }, [favoriteBeersList]);
 
   const favoriteSelected = (id) => {
-    if (!favoriteBeers.includes(id)) {
+    if (!favoriteBeersList.includes(id)) {
       addFavoriteBeer(id);
     } else {
       removeFavoriteBeer(id);

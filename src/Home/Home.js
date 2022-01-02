@@ -6,8 +6,7 @@ import "./Home.css";
 
 const Home = () => {
   const [showModal, setShowModal] = useState(false);
-  const { getBeersData, beersList, generateRandomBeer, randomBeer } =
-    useContext(beersContext);
+  const { getBeersData, beersList, generateRandomBeer, randomBeer } = useContext(beersContext);
 
   useEffect(() => {
     getBeersData();
@@ -19,9 +18,9 @@ const Home = () => {
   };
 
   return (
-    <main style={{ width: "100%", textAlign: "center" }}>
+    <main>
       <h1>Beers</h1>
-      <button className="RandomBeerBtn" onClick={() => showRandomBeerModal()}>
+      <button className="RandomBeerBtn" onClick={showRandomBeerModal}>
         Random Beer
       </button>
 

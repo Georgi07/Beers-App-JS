@@ -7,7 +7,7 @@ export const beersContext = React.createContext();
 export const ContextProvider = ({ children }) => {
   const [beersList, setBeersList] = useState([]);
   const [randomBeer, setRandomBeer] = useState();
-  const [favoriteBeers, setFavoriteBeers] = useState([]);
+  const [favoriteBeersList, setFavoriteBeersList] = useState([]);
 
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();
@@ -23,12 +23,12 @@ export const ContextProvider = ({ children }) => {
     storedBeers.split(",").map((favBeer) => {
       parsedData.push(+favBeer);
     });
-    setFavoriteBeers(...favoriteBeers, parsedData);
+    setFavoriteBeersList(...favoriteBeersList, parsedData);
   };
 
   const addFavoriteBeer = (beerId) => {
-    if (!favoriteBeers.includes(beerId)) {
-      setFavoriteBeers([...favoriteBeers, beerId]);
+    if (!favoriteBeersList.includes(beerId)) {
+      setFavoriteBeersList([...favoriteBeersList, beerId]);
 
       localStorage.setItem("storedFavoriteBeers", [
         localStorage.getItem("storedFavoriteBeers"),
@@ -38,10 +38,10 @@ export const ContextProvider = ({ children }) => {
   };
 
   const removeFavoriteBeer = (beerId) => {
-    const filteredFavorites = favoriteBeers.filter(
+    const filteredFavorites = favoriteBeersList.filter(
       (favId) => +favId !== beerId
     );
-    setFavoriteBeers(filteredFavorites);
+    setFavoriteBeersList(filteredFavorites);
     localStorage.setItem("storedFavoriteBeers", filteredFavorites);
   };
 
@@ -73,7 +73,7 @@ export const ContextProvider = ({ children }) => {
         randomBeer,
         playBeerOpeningSound,
         addFavoriteBeer,
-        favoriteBeers,
+        favoriteBeersList,
         removeFavoriteBeer,
         provider,
         signer,
